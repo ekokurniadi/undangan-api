@@ -2,6 +2,6 @@ package entity
 
 type Galeri struct {
 	ID         int
-	IdUndangan int
+	IdUndangan string
 	Foto       string
 }

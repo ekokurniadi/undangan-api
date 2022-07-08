@@ -2,7 +2,7 @@ package entity
 
 type UndanganDetail struct {
 	ID           int
-	IdUndangan   int
+	IdUndangan   string
 	NamaAcara    string
 	TanggalAcara string
 	WaktuAcara   string

@@ -2,7 +2,7 @@ package entity
 
 type LoveStory struct {
 	ID         int
-	IdUndangan int
+	IdUndangan string
 	Judul      string
 	Tanggal    string
 	Tempat     string

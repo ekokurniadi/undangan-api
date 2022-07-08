@@ -8,6 +8,7 @@ require (
 	github.com/ekokurniadi/indodate v0.0.0-20211023114713-7421b83590df // indirect
 	github.com/ekokurniadi/micagen v0.0.0-20211125112223-863eaf6d5b47 // indirect
 	github.com/fatih/camelcase v1.0.0 // indirect
+	github.com/gin-contrib/cors v1.4.0 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/gin-gonic/gin v1.8.1 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect

@@ -4,7 +4,7 @@ import "time"
 
 type GuestBook struct {
 	ID              int
-	IdUndangan      int
+	IdUndangan      string
 	NamaTamu        string
 	StatusKehadiran string
 	Pesan           string

@@ -2,7 +2,7 @@ package entity
 
 type Hadiah struct {
 	ID             int
-	IdUndangan     int
+	IdUndangan     string
 	NamaBank       string
 	NoRekening     string
 	NamaPenerima   string
