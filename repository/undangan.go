@@ -12,6 +12,7 @@ type UndanganRepository interface {
 	FindByIDUndangan(ID int) (entity.Undangan, error)
 	FindAllUndangan() ([]entity.Undangan, error)
 	DeleteByIDUndangan(ID int) (entity.Undangan, error)
+	FindByKodeUndangan(param string) (entity.Undangan, error)
 }
 
 type undanganRepository struct {
@@ -33,6 +34,15 @@ func (r *undanganRepository) SaveUndangan(undangan entity.Undangan) (entity.Unda
 func (r *undanganRepository) FindByIDUndangan(ID int) (entity.Undangan, error) {
 	var undangan entity.Undangan
 	err := r.db.Where("id = ? ", ID).Find(&undangan).Error
+	if err != nil {
+		return undangan, err
+	}
+	return undangan, nil
+
+}
+func (r *undanganRepository) FindByKodeUndangan(param string) (entity.Undangan, error) {
+	var undangan entity.Undangan
+	err := r.db.Where("kode_undangan = ? ", param).Find(&undangan).Error
 	if err != nil {
 		return undangan, err
 	}

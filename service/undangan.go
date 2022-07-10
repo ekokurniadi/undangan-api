@@ -10,6 +10,7 @@ import (
 type UndanganService interface {
 	UndanganServiceGetAll() ([]entity.Undangan, error)
 	UndanganServiceGetByID(inputID input.InputIDUndangan) (entity.Undangan, error)
+	UndanganServiceGetByKode(param string) (entity.Undangan, error)
 	UndanganServiceCreate(input input.UndanganInput) (entity.Undangan, error)
 	UndanganServiceUpdate(inputID input.InputIDUndangan, inputData input.UndanganInput) (entity.Undangan, error)
 	UndanganServiceDeleteByID(inputID input.InputIDUndangan) (bool, error)
@@ -41,6 +42,9 @@ func (s *undanganService) UndanganServiceCreate(input input.UndanganInput) (enti
 	undangan.Status = input.Status
 	undangan.FotoPria = input.FotoPria
 	undangan.FotoWanita = input.FotoWanita
+	undangan.NamaPanggilanPria = input.NamaPanggilanPria
+	undangan.NamaPanggilanWanita = input.NamaPanggilanWanita
+	undangan.PathUrl = input.PathUrl
 	newUndangan, err := s.repository.SaveUndangan(undangan)
 	if err != nil {
 		return newUndangan, err
@@ -69,6 +73,9 @@ func (s *undanganService) UndanganServiceUpdate(inputID input.InputIDUndangan, i
 	undangan.Status = inputData.Status
 	undangan.FotoPria = inputData.FotoPria
 	undangan.FotoWanita = inputData.FotoWanita
+	undangan.NamaPanggilanPria = inputData.NamaPanggilanPria
+	undangan.NamaPanggilanWanita = inputData.NamaPanggilanWanita
+	undangan.PathUrl = inputData.PathUrl
 
 	updatedUndangan, err := s.repository.UpdateUndangan(undangan)
 
@@ -79,6 +86,13 @@ func (s *undanganService) UndanganServiceUpdate(inputID input.InputIDUndangan, i
 }
 func (s *undanganService) UndanganServiceGetByID(inputID input.InputIDUndangan) (entity.Undangan, error) {
 	undangan, err := s.repository.FindByIDUndangan(inputID.ID)
+	if err != nil {
+		return undangan, err
+	}
+	return undangan, nil
+}
+func (s *undanganService) UndanganServiceGetByKode(param string) (entity.Undangan, error) {
+	undangan, err := s.repository.FindByKodeUndangan(param)
 	if err != nil {
 		return undangan, err
 	}

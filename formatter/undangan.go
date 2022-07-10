@@ -8,7 +8,9 @@ type UndanganFormatter struct {
 	KodeTemaUndangan     string  `json:"kode_tema_undangan"`
 	NameTemaUndangan     string  `json:"name_tema_undangan"`
 	NamaPria             string  `json:"nama_pria"`
+	NamaPanggilanPria    string  `json:"nama_panggilan_pria"`
 	NamaWanita           string  `json:"nama_wanita"`
+	NamaPanggilanWanita  string  `json:"nama_panggilan_wanita"`
 	TanggalResepsi       string  `json:"tanggal_resepsi"`
 	NamaOrangTuaPria     string  `json:"nama_orang_tua_pria"`
 	NamaOrangTuaWanita   string  `json:"nama_orang_tua_wanita"`
@@ -21,6 +23,7 @@ type UndanganFormatter struct {
 	Status               int     `json:"status"`
 	FotoPria             string  `json:"foto_pria"`
 	FotoWanita           string  `json:"foto_wanita"`
+	PathUrl              string  `json:"path_url"`
 }
 
 func FormatUndangan(undangan entity.Undangan) UndanganFormatter {
@@ -43,6 +46,9 @@ func FormatUndangan(undangan entity.Undangan) UndanganFormatter {
 	undanganFormatter.Status = undangan.Status
 	undanganFormatter.FotoPria = undangan.FotoPria
 	undanganFormatter.FotoWanita = undangan.FotoWanita
+	undanganFormatter.NamaPanggilanPria = undangan.NamaPanggilanPria
+	undanganFormatter.NamaPanggilanWanita = undangan.NamaPanggilanWanita
+	undanganFormatter.PathUrl = undangan.PathUrl
 	return undanganFormatter
 }
 func FormatUndangans(undangans []entity.Undangan) []UndanganFormatter {

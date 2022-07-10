@@ -8,7 +8,9 @@ type Undangan struct {
 	KodeTemaUndangan     string
 	NameTemaUndangan     string
 	NamaPria             string
+	NamaPanggilanPria    string
 	NamaWanita           string
+	NamaPanggilanWanita  string
 	TanggalResepsi       string
 	NamaOrangTuaPria     string
 	NamaOrangTuaWanita   string
@@ -21,6 +23,7 @@ type Undangan struct {
 	Status               int
 	FotoPria             string
 	FotoWanita           string
+	PathUrl              string
 	ExpiredAt            time.Time
 	CreatedAt            time.Time
 	UpdatedAt            time.Time

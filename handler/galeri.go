@@ -32,7 +32,7 @@ func (h *galeriHandler) GetGaleri(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
-	response := helper.ApiResponse("Detail Galeri", http.StatusOK, "success", formatter.FormatGaleri(galeriDetail))
+	response := helper.ApiResponse("Detail Galerie", http.StatusOK, "success", formatter.FormatGaleri(galeriDetail))
 	c.JSON(http.StatusOK, response)
 }
 

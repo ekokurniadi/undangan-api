@@ -25,6 +25,7 @@ func (r *undanganRoute) RunUndanganRoute() {
 
 	r.group.POST("/undangan", undanganHandler.CreateUndangan)
 	r.group.GET("/undangan", undanganHandler.GetUndangans)
+	r.group.GET("/undangan/:id/undangan", undanganHandler.GetUndanganByKode)
 	r.group.GET("/undangan/:id", undanganHandler.GetUndangan)
 	r.group.DELETE("/undangan/:id", undanganHandler.DeleteUndangan)
 	r.group.PUT("/undangan/:id", undanganHandler.UpdateUndangan)

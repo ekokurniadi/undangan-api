@@ -19,6 +19,17 @@ func NewUndanganHandler(service service.UndanganService) *undanganHandler {
 	return &undanganHandler{service}
 }
 
+func (h *undanganHandler) GetUndanganByKode(c *gin.Context) {
+	params := c.Param("id")
+	undanganDetail, err := h.service.UndanganServiceGetByKode(params)
+	if err != nil {
+		response := helper.ApiResponse("Failed to get Undangan", http.StatusBadRequest, "error", nil)
+		c.JSON(http.StatusBadRequest, response)
+		return
+	}
+	response := helper.ApiResponse("Detail Undangan", http.StatusOK, "success", formatter.FormatUndangan(undanganDetail))
+	c.JSON(http.StatusOK, response)
+}
 func (h *undanganHandler) GetUndangan(c *gin.Context) {
 	var input input.InputIDUndangan
 	err := c.ShouldBindUri(&input)
