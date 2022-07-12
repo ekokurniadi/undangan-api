@@ -37,6 +37,7 @@ func (inject *routesInjector) RunAppRouters() {
 	NewHadiahRoute(inject.db, api).RunHadiahRoute()
 	NewLoveStoryRoute(inject.db, api).RunLoveStoryRoute()
 	NewUndanganDetailRoute(inject.db, api).RunUndanganDetailRoute()
+	NewTurutMengundangRoute(inject.db, api).RunTurutMengundangRoute()
 
 	router.Run()
 }

@@ -29,6 +29,7 @@ func (m *migrationsList) MigrateAllEntities() {
 		entity.UndanganDetail{},
 		entity.User{},
 		entity.RootLink{},
+		entity.TurutMengundang{},
 	)
 
 	migrationsList.Entities = entities

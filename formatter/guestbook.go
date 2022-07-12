@@ -1,13 +1,17 @@
 package formatter
 
-import "undangan_online_api/entity"
+import (
+	"time"
+	"undangan_online_api/entity"
+)
 
 type GuestBookFormatter struct {
-	ID              int    `json:"id"`
-	IdUndangan      string `json:"id_undangan"`
-	NamaTamu        string `json:"nama_tamu"`
-	StatusKehadiran string `json:"status_kehadiran"`
-	Pesan           string `json:"pesan"`
+	ID              int       `json:"id"`
+	IdUndangan      string    `json:"id_undangan"`
+	NamaTamu        string    `json:"nama_tamu"`
+	StatusKehadiran string    `json:"status_kehadiran"`
+	Pesan           string    `json:"pesan"`
+	CreatedAt       time.Time `json:"created_at"`
 }
 
 func FormatGuestBook(guestbook entity.GuestBook) GuestBookFormatter {
@@ -17,6 +21,7 @@ func FormatGuestBook(guestbook entity.GuestBook) GuestBookFormatter {
 	guestbookFormatter.NamaTamu = guestbook.NamaTamu
 	guestbookFormatter.StatusKehadiran = guestbook.StatusKehadiran
 	guestbookFormatter.Pesan = guestbook.Pesan
+	guestbookFormatter.CreatedAt = guestbook.CreatedAt
 	return guestbookFormatter
 }
 func FormatGuestBooks(guestbooks []entity.GuestBook) []GuestBookFormatter {

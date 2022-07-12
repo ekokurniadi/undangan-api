@@ -7,7 +7,7 @@ import (
 )
 
 type HadiahService interface {
-	HadiahServiceGetAll() ([]entity.Hadiah, error)
+	HadiahServiceGetAll(params string) ([]entity.Hadiah, error)
 	HadiahServiceGetByID(inputID input.InputIDHadiah) (entity.Hadiah, error)
 	HadiahServiceCreate(input input.HadiahInput) (entity.Hadiah, error)
 	HadiahServiceUpdate(inputID input.InputIDHadiah, inputData input.HadiahInput) (entity.Hadiah, error)
@@ -58,8 +58,8 @@ func (s *hadiahService) HadiahServiceGetByID(inputID input.InputIDHadiah) (entit
 	}
 	return hadiah, nil
 }
-func (s *hadiahService) HadiahServiceGetAll() ([]entity.Hadiah, error) {
-	hadiahs, err := s.repository.FindAllHadiah()
+func (s *hadiahService) HadiahServiceGetAll(params string) ([]entity.Hadiah, error) {
+	hadiahs, err := s.repository.FindAllHadiah(params)
 	if err != nil {
 		return hadiahs, err
 	}

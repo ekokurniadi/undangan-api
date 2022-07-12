@@ -37,7 +37,8 @@ func (h *guestbookHandler) GetGuestBook(c *gin.Context) {
 }
 
 func (h *guestbookHandler) GetGuestBooks(c *gin.Context) {
-	guestbooks, err := h.service.GuestBookServiceGetAll()
+	params := c.Param("id")
+	guestbooks, err := h.service.GuestBookServiceGetAll(params)
 	if err != nil {
 		response := helper.ApiResponse("Failed to get GuestBooks", http.StatusBadRequest, "error", nil)
 		c.JSON(http.StatusBadRequest, response)

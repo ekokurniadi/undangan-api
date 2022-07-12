@@ -37,7 +37,8 @@ func (h *hadiahHandler) GetHadiah(c *gin.Context) {
 }
 
 func (h *hadiahHandler) GetHadiahs(c *gin.Context) {
-	hadiahs, err := h.service.HadiahServiceGetAll()
+	params := c.Param("id")
+	hadiahs, err := h.service.HadiahServiceGetAll(params)
 	if err != nil {
 		response := helper.ApiResponse("Failed to get Hadiahs", http.StatusBadRequest, "error", nil)
 		c.JSON(http.StatusBadRequest, response)

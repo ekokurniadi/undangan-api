@@ -10,7 +10,7 @@ type HadiahRepository interface {
 	SaveHadiah(hadiah entity.Hadiah) (entity.Hadiah, error)
 	UpdateHadiah(hadiah entity.Hadiah) (entity.Hadiah, error)
 	FindByIDHadiah(ID int) (entity.Hadiah, error)
-	FindAllHadiah() ([]entity.Hadiah, error)
+	FindAllHadiah(params string) ([]entity.Hadiah, error)
 	DeleteByIDHadiah(ID int) (entity.Hadiah, error)
 }
 
@@ -47,9 +47,9 @@ func (r *hadiahRepository) UpdateHadiah(hadiah entity.Hadiah) (entity.Hadiah, er
 	return hadiah, nil
 
 }
-func (r *hadiahRepository) FindAllHadiah() ([]entity.Hadiah, error) {
+func (r *hadiahRepository) FindAllHadiah(params string) ([]entity.Hadiah, error) {
 	var hadiahs []entity.Hadiah
-	err := r.db.Find(&hadiahs).Error
+	err := r.db.Where("id_undangan = ?", params).Find(&hadiahs).Error
 	if err != nil {
 		return hadiahs, err
 	}

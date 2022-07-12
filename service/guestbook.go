@@ -2,12 +2,13 @@ package service
 
 import (
 	"undangan_online_api/entity"
+	"undangan_online_api/helper"
 	"undangan_online_api/input"
 	"undangan_online_api/repository"
 )
 
 type GuestBookService interface {
-	GuestBookServiceGetAll() ([]entity.GuestBook, error)
+	GuestBookServiceGetAll(params string) ([]entity.GuestBook, error)
 	GuestBookServiceGetByID(inputID input.InputIDGuestBook) (entity.GuestBook, error)
 	GuestBookServiceCreate(input input.GuestBookInput) (entity.GuestBook, error)
 	GuestBookServiceUpdate(inputID input.InputIDGuestBook, inputData input.GuestBookInput) (entity.GuestBook, error)
@@ -23,9 +24,9 @@ func NewGuestBookService(repository repository.GuestBookRepository) *guestbookSe
 func (s *guestbookService) GuestBookServiceCreate(input input.GuestBookInput) (entity.GuestBook, error) {
 	guestbook := entity.GuestBook{}
 	guestbook.IdUndangan = input.IdUndangan
-	guestbook.NamaTamu = input.NamaTamu
-	guestbook.StatusKehadiran = input.StatusKehadiran
-	guestbook.Pesan = input.Pesan
+	guestbook.NamaTamu = helper.XSSProtection(input.NamaTamu).(string)
+	guestbook.StatusKehadiran = helper.XSSProtection(input.StatusKehadiran).(string)
+	guestbook.Pesan = helper.XSSProtection(input.Pesan).(string)
 	newGuestBook, err := s.repository.SaveGuestBook(guestbook)
 	if err != nil {
 		return newGuestBook, err
@@ -56,8 +57,8 @@ func (s *guestbookService) GuestBookServiceGetByID(inputID input.InputIDGuestBoo
 	}
 	return guestbook, nil
 }
-func (s *guestbookService) GuestBookServiceGetAll() ([]entity.GuestBook, error) {
-	guestbooks, err := s.repository.FindAllGuestBook()
+func (s *guestbookService) GuestBookServiceGetAll(params string) ([]entity.GuestBook, error) {
+	guestbooks, err := s.repository.FindAllGuestBook(params)
 	if err != nil {
 		return guestbooks, err
 	}

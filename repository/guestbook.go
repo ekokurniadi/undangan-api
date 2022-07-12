@@ -10,7 +10,7 @@ type GuestBookRepository interface {
 	SaveGuestBook(guestbook entity.GuestBook) (entity.GuestBook, error)
 	UpdateGuestBook(guestbook entity.GuestBook) (entity.GuestBook, error)
 	FindByIDGuestBook(ID int) (entity.GuestBook, error)
-	FindAllGuestBook() ([]entity.GuestBook, error)
+	FindAllGuestBook(params string) ([]entity.GuestBook, error)
 	DeleteByIDGuestBook(ID int) (entity.GuestBook, error)
 }
 
@@ -47,9 +47,9 @@ func (r *guestbookRepository) UpdateGuestBook(guestbook entity.GuestBook) (entit
 	return guestbook, nil
 
 }
-func (r *guestbookRepository) FindAllGuestBook() ([]entity.GuestBook, error) {
+func (r *guestbookRepository) FindAllGuestBook(params string) ([]entity.GuestBook, error) {
 	var guestbooks []entity.GuestBook
-	err := r.db.Find(&guestbooks).Error
+	err := r.db.Where("id_undangan= ? ", params).Find(&guestbooks).Error
 	if err != nil {
 		return guestbooks, err
 	}
